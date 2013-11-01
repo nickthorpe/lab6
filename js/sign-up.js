@@ -38,10 +38,40 @@ $(function(){
 			return valid;	    
 	    }
 	});
+
+	$('select[name="refer"]').change(function(){
+	    //get a ref to the refer select
+	    //add the refer-other input
+	    var referSelect = $(this);
+	    var otherInput = $('[name="refer-other"]');
+
+	    //if the refer select's value in lower case is equal to "other"...
+	    if ('other' === referSelect.val().toLowerCase()) {
+	        //remove the disabled attribute from the
+	        //refer-other input, show it, and set focus to it
+	        otherInput.removeAttr('disabled');
+	        otherInput.show();
+	        otherInput.focus()
+	    }
+	    else {	
+	        //otherwise, make the refer-other input disabled
+	        //and hide it
+	        otherInput.attr('disabled', true);
+	        otherInput.hide();
+	    }
+	}); //refer change function
+
+	//add this at the end of your document ready function
+	$('.btn-abandon').click(function(){
+	    window.location = 'http://www.google.com';
+	});
                     
 }); //on document ready 
 
 $('.cancel-signup').click(function(){
     //code to run when user clicks "No Thanks!" button
-    window.location = 'http://www.google.com';
+    //show the modal confirmation dialog
+    //and don't reset window.location until the user clicks
+    //the "Yes, Get Me Out of Here!" button
+    $('.cancel-signup-modal').modal();
 }); //cancel-signup click
