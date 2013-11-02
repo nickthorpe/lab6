@@ -8,7 +8,9 @@ $(function(){
     var idx;
 	var state;
 	var option;
+	// getting reference to state select using jQuery function and assigning it to a variable
 	var stateSelect = $('select[name="state"]');
+	// loop over usStates array to load the State dropdown
 	for (idx = 0; idx < usStates.length; ++idx) {
     	state = usStates[idx];
     	//code to create new option element, populate, and append
@@ -25,12 +27,16 @@ $(function(){
     	var signupForm = $(this);
 	    //select a descendant input element with the name "addr-1"
 	    var addr1Input = signupForm.find('input[name="addr-1"]');
+	    //assigning variable to the length of addr1
 	    var addr1Value = addr1Input.val();
+	    //assigning variable to determine whether length of addr1 is greater than zero
 	    var valid = addr1Value.length > 0;
+	    //if test to determine whether or not there is a zip code input when an address is inputed
 	    if(valid) {
 	    	var zipInput = signupForm.find('input[name="zip"]');
     		var zipValue = zipInput.val();
     		var zipValid = zipValue.length > 0;
+    		//if test to determine whether or not there is a zip code when there is a vaild address, need both or neither elements
             if (!zipValid){
             	alert("If you specify an address, you must also list a zip code!");
             	return false;                        
@@ -62,6 +68,7 @@ $(function(){
 	}); //refer change function
 
 	//add this at the end of your document ready function
+	//goes back to google if you don't want to fill out form
 	$('.btn-abandon').click(function(){
 	    window.location = 'http://www.google.com';
 	});
